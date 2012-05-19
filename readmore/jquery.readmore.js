@@ -1,47 +1,51 @@
 /**
  * jquery.readmore - Substring long paragraphs and make expandable with "more" link
- * @date 7 July 2010
+ * @date 19 May 2012
  * @author Jake Trent  http://www.builtbyjake.com
- * @version 1.1
+ * @version 1.5
  */
 (function ($) {
   $.fn.readmore = function (settings) {
 
-    var opts =  $.extend({}, $.fn.readmore.defaults, settings);
+    var defaults = {
+      substr_len: 500,
+      ellipses: '&#8230;',
+      more_link: '<a class="readm-more">Read&nbsp;More</a>',
+      more_clzz: 'readm-more',
+      ellipse_clzz: 'readm-continue',
+      hidden_clzz: 'readm-hidden'
+    };
+
+    var opts =  $.extend({}, defaults, settings);
 
     this.each(function () {
-      $(this).data("opts", opts);
-      if ($(this).html().length > opts.substr_len) {
-        abridge($(this));
-        linkage($(this));
+      var $this = $(this);
+      if ($this.html().length > opts.substr_len) {
+        abridge($this);
+        linkage($this);
       }
     });
 
     function linkage(elem) {
-      elem.append(elem.data("opts").more_link);
-      elem.children(".more").click( function () {
+      elem.append(opts.more_link);
+      elem.find('.' + opts.more_clzz).click( function () {
         $(this).hide();
-        $(this).siblings("span:not(.hidden)").hide().siblings("span.hidden").animate({'opacity' : 'toggle'},1000);
+        elem.find('.' + opts.ellipse_clzz).hide();
+        elem.find('.' + opts.hidden_clzz).animate({'opacity' : 'toggle'},1000);
       });
     }
 
     function abridge(elem) {
-      var opts = elem.data("opts");
       var txt = elem.html();
-      var len = opts.substr_len;
-      var dots = "<span>" + opts.ellipses + "</span>";
-      var shown = txt.substring(0, len) + dots;
-      var hidden = '<span class="hidden" style="display:none;">' + txt.substring(len, txt.length) + '</span>';
+      var dots = "<span class='" + opts.ellipse_clzz + "'>" + opts.ellipses + "</span>";
+      var shown = txt.substring(0, opts.substr_len) + dots;
+      var hidden =
+        '<span class="' + opts.hidden_clzz + '" style="display:none;">' +
+          txt.substring(opts.substr_len, txt.length) +
+        '</span>';
       elem.html(shown + hidden);
     }
     
     return this;
   };
-
-  $.fn.readmore.defaults = {
-    substr_len: 500,
-    ellipses: '&#8230;',
-    more_link: '<a class="more">Read&nbsp;More</a>'
-  };
-
 })(jQuery);
