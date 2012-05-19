@@ -19,3 +19,7 @@ Import the script, then on an element that has just child text, apply a selector
 </script>
 
 ```
+
+##Demo
+
+See demo at [jtsnake.github.com/jquery-readmore](http://jtsnake.github.com/jquery-readmore/).
