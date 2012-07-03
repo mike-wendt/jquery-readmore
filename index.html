@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jquery-readmore : Truncate long amounts of text and display remaining with a &quot;Read More&quot; link" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jquery-readmore</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mike-wendt/jquery-readmore">View on GitHub</a>
+
+          <h1 id="project_title">jquery-readmore</h1>
+          <h2 id="project_tagline">Truncate long amounts of text and display remaining with a &quot;Read More&quot; link</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mike-wendt/jquery-readmore/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mike-wendt/jquery-readmore/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>What it is</h2>
+
+<p>Display on a certain number of characters of text, and trigger the display of the full text with an automatically appended "Read More" link.</p>
+
+<p>Customizable: number of characters, ellipsis text, "Read More" link, and whether displayed text splits words</p>
+
+<h2>Get it</h2>
+
+<ul>
+<li>
+<a href="https://raw.github.com/mike-wendt/jquery-readmore/master/readmore/jquery.readmore.js">jquery.readmore.js</a> - Latest version.</li>
+<li>
+<a href="https://raw.github.com/mike-wendt/jquery-readmore/master/readmore/jquery.readmore.min.js">jquery.readmore.min.js</a> - Latest compressed version.</li>
+</ul><h2>How to use it</h2>
+
+<pre><code>$( [selector] ).readmore( [options] );
+</code></pre>
+
+<p>Perform readmore on jQuery selection.</p>
+
+<ul>
+<li>
+<strong>selector</strong> - The selector selecting the sub-elements to perform readmore on.</li>
+<li>
+<strong>options</strong> - A map of additional options to pass to the method. Supported are:
+
+<ul>
+<li>
+<strong>substr_len</strong> - The number of chars to display. Defaults to 500.</li>
+<li>
+<strong>split_word</strong> - If <em>true</em> splits at exactly <strong>substr_len</strong> chars even if it the split is in a word; if <em>false</em> split occurs on first space character after <strong>substr_len</strong> chars. Defaults to <em>false</em>.</li>
+<li>
+<strong>ellipses</strong> - The ellipsis character or string to use. Defaults to '…' (ellipsis).</li>
+<li>
+<strong>more_link</strong> - The link displayed after the <strong>ellipses</strong> string to show the remaining content. Defaults to <code>&lt;a class="readm-more"&gt;Read&amp;nbsp;More&lt;/a&gt;</code>.</li>
+<li>
+<strong>more_clzz</strong> - The class to use for <strong>more_links</strong>. Defaults to 'readm-more'.</li>
+<li>
+<strong>ellipse_clzz</strong> - The ellipsis class. Defaults to 'readm-continue'.</li>
+<li>
+<strong>hidden_clzz</strong> - The hidden class for the truncated text. Defaults to 'readm-hidden'.</li>
+</ul>
+</li>
+</ul><h2>Examples</h2>
+
+<h3>Using default options</h3>
+
+<p>Code:</p>
+
+<pre><code>&lt;div class="collapse"&gt;
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id eleifend arcu. In hac habitasse platea dictumst. Aenean vestibulum scelerisque augue sit amet accumsan. Praesent sit amet interdum enim. Etiam nec volutpat metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin sit amet velit sit amet mi laoreet euismod vitae eget enim. Curabitur placerat venenatis semper. Cras erat odio, rhoncus faucibus laoreet et, feugiat sit amet risus. Duis laoreet iaculis enim, a porttitor dui fermentum id. Nullam posuere hendrerit elit, in pellentesque magna rhoncus tempor.
+
+Vestibulum vel vulputate erat. Mauris eget libero eget leo tempus fringilla. Sed ultricies accumsan metus a congue. Nam quis fermentum orci. Aliquam ultricies facilisis rutrum. Nulla gravida vulputate cursus. Integer a tempus lacus. Cras laoreet, sem id laoreet pretium, lectus nulla suscipit elit, et laoreet justo turpis at quam. Vestibulum dictum, odio quis sodales ornare, diam quam sodales libero, in gravida sem massa vel orci. Nam tempor mauris posuere lectus pulvinar a consequat lacus egestas. Sed faucibus ipsum at metus iaculis pellentesque. Sed adipiscing, tortor sed placerat tempor, libero tortor sollicitudin nisl, at egestas nibh diam eget turpis.
+&lt;/div&gt;
+
+&lt;script&gt;
+  $('.collapse').readmore();
+&lt;/script&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id eleifend arcu. In hac habitasse platea dictumst. Aenean vestibulum scelerisque augue sit amet accumsan. Praesent sit amet interdum enim. Etiam nec volutpat metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin sit amet velit sit amet mi laoreet euismod vitae eget enim. Curabitur placerat venenatis semper. Cras erat odio, rhoncus faucibus laoreet et, feugiat sit amet risus. Duis laoreet...Read More </p>
+
+<h3>Using custom options</h3>
+
+<p>Code:</p>
+
+<pre><code>&lt;script&gt;
+  $('.collapse').readmore({ split_word: true });
+&lt;/script&gt;
+</code></pre>
+
+<p>Output:</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id eleifend arcu. In hac habitasse platea dictumst. Aenean vestibulum scelerisque augue sit amet accumsan. Praesent sit amet interdum enim. Etiam nec volutpat metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin sit amet velit sit amet mi laoreet euismod vitae eget enim. Curabitur placerat venenatis semper. Cras erat odio, rhoncus faucibus laoreet et, feugiat sit amet risus. Duis la...Read More </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jquery-readmore maintained by <a href="https://github.com/mike-wendt">mike-wendt</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
